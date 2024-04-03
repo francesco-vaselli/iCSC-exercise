@@ -18,7 +18,7 @@ def plot_1dhistos(data, features, bins=100):
     if features is N_const, use linspace binning
     """
     n_features = len(features)
-    fig, axs = plt.subplots(n_features, 2, figsize=(12, 4 * n_features))
+    fig, axs = plt.subplots(n_features, 2, figsize=(8, 3 * n_features))
 
     for i, feature in enumerate(features):
         if feature == 'N_const':
@@ -132,17 +132,18 @@ def roc_curve_figure(
     shade=True,
     ):
 
+    flavour = gen[:, 4]
+    mask_light = (flavour == 0)
+
     if mode == 'btag':
-        flavour = gen[:, 4]
         mask = (flavour == 2)
         target = target[:, 0]
 
-    if mode == 'ctag':
-        flavour = gen[:, 4] 
+    if mode == 'ctag': 
         mask = (flavour == 1)  
-        target = target[:, 5]     
+        target = target[:, 5] 
     
-    fpr_target, tpr_target, _ = roc_curve(np.concatenate((np.ones_like(target[mask]), np.zeros_like(target[~mask]))), np.concatenate((target[mask], target[~mask])))
+    fpr_target, tpr_target, _ = roc_curve(np.concatenate((np.ones_like(target[mask]), np.zeros_like(target[mask_light]))), np.concatenate((target[mask], target[mask_light])))
     roc_auc_target = auc(fpr_target, tpr_target)
 
     if model != None:
