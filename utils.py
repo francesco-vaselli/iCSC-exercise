@@ -49,7 +49,7 @@ def plot_corner(data, features):
     plt.show()
     return
 
-def make_corner(reco, samples, labels, title, ranges=None, *args, **kwargs):
+def make_corner(reco, samples, labels, title, ranges=[[-0.2, 1], [15, 300], [-0.2, 6.4], [-4, 4], [0,60], [-0.2, 1]], *args, **kwargs):
     blue_line = mlines.Line2D([], [], color="tab:blue", label="Target")
     red_line = mlines.Line2D([], [], color="tab:orange", label="Model")
     fig = corner.corner(
@@ -146,7 +146,7 @@ def roc_curve_figure(
     fpr_target, tpr_target, _ = roc_curve(np.concatenate((np.ones_like(target[mask]), np.zeros_like(target[mask_light]))), np.concatenate((target[mask], target[mask_light])))
     roc_auc_target = auc(fpr_target, tpr_target)
 
-    if model != None:
+    if model is not None:
         if mode == 'btag':
             model = model[:, 0]
         elif mode == 'ctag':
