@@ -154,6 +154,14 @@ def roc_curve_figure(
         fpr_model, tpr_model, _ = roc_curve(np.concatenate([np.ones_like(model[mask]), np.zeros_like(model[~mask])]), np.concatenate([model[mask], model[~mask]]))
         roc_auc_model = auc(fpr_model, tpr_model)
 
+    # make target and model arrays the same length
+    # if model is not None:
+    #     max_len = min(len(tpr_target), len(tpr_model))
+    #     tpr_target = tpr_target[:max_len]
+    #     fpr_target = fpr_target[:max_len]
+    #     tpr_model = tpr_model[:max_len]
+    #     fpr_model = fpr_model[:max_len]
+
     if perturb:
         tpr_target_perturbed_minus = 1 - (1 - tpr_target) * 1.2
         tpr_target_perturbed_plus = 1 - (1 - tpr_target) * 0.8
@@ -195,10 +203,10 @@ def roc_curve_figure(
             color="dodgerblue",
         )
 
-    if model != None:
+    if model is not None:
         abc = areas_between_rocs(tpr_target, fpr_target, tpr_model, fpr_model, x_lim=0.2)
 
-    if model != None:
+    if model is not None:
         ax.plot(
             tpr_model,
             fpr_model,
