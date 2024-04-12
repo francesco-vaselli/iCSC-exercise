@@ -1,3 +1,5 @@
 nflows
 corner
 torchsummary
+scikit-learn
+ipykernel
