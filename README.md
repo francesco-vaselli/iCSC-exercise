@@ -1,3 +1,6 @@
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/francesco-vaselli/iCSC-exercise/blob/main/exercise.ipynb?authuser=1)
+
 The following repository contains the code for running the exercise for [my inverted CERN School of Computing lecture](https://indico.cern.ch/event/1334738/contributions/5814283/) on Generative Models for HEP.
 
 If you are not attending in person to the exercise, please leave SWAN machines to the in-person attendees and deploy the notebook on Colab, as SWAN machines are limited in number.
